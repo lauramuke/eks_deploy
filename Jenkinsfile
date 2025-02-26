@@ -4,7 +4,7 @@ pipeline {
                 choice(name: 'Deployment_Type', choices:['apply','destroy'],description:'The deployment type')
                   }
     environment {
-        EMAIL_TO = 'fusisoft@gmail.com'
+        EMAIL_TO = 'lauramuke12@gmail.com'
     }
     stages {
         stage('1.Terraform init') {
@@ -16,7 +16,8 @@ pipeline {
         stage('2.Terraform plan') {
             steps {
                 echo 'terraform plan phase'
-                sh 'AWS_REGION=us-west-2 terraform plan'
+                sh 'terraform plan'
+            //    sh 'AWS_REGION=us-west-2 terraform plan'
             }
         }
         stage('3.Manual Approval') {
@@ -41,11 +42,11 @@ pipeline {
                 }
         stage ('5. Email Notification') {
             steps {
-               mail bcc: 'fusisoft@gmail.com', body: '''Terraform deployment is completed.
+               mail bcc: 'lauramuke12@gmail.com', body: '''Terraform deployment is completed.
                Let me know if the changes look okay.
                Thanks,
                Dominion System Technologies,
-              +1 (313) 413-1477''', cc: 'fusisoft@gmail.com', from: '', replyTo: '', subject: 'Terraform Infra deployment completed!!!', to: 'fusisoft@gmail.com'
+              +1 (313) 413-1477''', cc: 'lauramuke12@gmail.com', from: '', replyTo: '', subject: 'Terraform Infra deployment completed!!!', to: 'lauramuke12@gmail.com'
                           
                }    
           }
